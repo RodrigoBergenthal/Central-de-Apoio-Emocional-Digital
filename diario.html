@@ -52,6 +52,10 @@
 
         <section class="emotion-history">
             <h2>Seu Histórico de Emoções</h2>
+            <div class="history-controls">
+                <button id="refresh-history" class="action-button">🔄 Atualizar Histórico</button>
+                <button id="clear-all" class="danger-button">🗑️ Apagar Todo o Histórico</button>
+            </div>
             <div id="history-container">
                 <p id="no-entries">Nenhuma entrada registrada ainda.</p>
                 <!-- Histórico será adicionado aqui dinamicamente -->
@@ -67,27 +71,49 @@
     <script>
         // Carregar entradas salvas do diário
         function loadJournalEntries() {
-            const entries = JSON.parse(localStorage.getItem('emotionJournal')) || [];
-            const container = document.getElementById('history-container');
-            
-            if (entries.length > 0) {
-                document.getElementById('no-entries').style.display = 'none';
-                container.innerHTML = '';
+            try {
+                const entries = JSON.parse(localStorage.getItem('emotionJournal')) || [];
+                const container = document.getElementById('history-container');
                 
-                entries.forEach(entry => {
-                    const entryElement = document.createElement('div');
-                    entryElement.classList.add('journal-history-item');
-                    entryElement.innerHTML = `
-                        <div class="history-header">
-                            <h3>${entry.date}</h3>
-                            <span class="emotion-emoji">${getEmojiForEmotion(entry.emotion)}</span>
-                        </div>
-                        <p>${entry.note}</p>
-                    `;
-                    container.appendChild(entryElement);
-                });
+                if (entries.length > 0) {
+                    document.getElementById('no-entries').style.display = 'none';
+                    container.innerHTML = '';
+                    
+                    entries.forEach(entry => {
+                        const entryElement = document.createElement('div');
+                        entryElement.classList.add('journal-history-item');
+                        entryElement.innerHTML = `
+                            <div class="history-header">
+                                <h3>${entry.date}</h3>
+                                <span class="emotion-emoji">${getEmojiForEmotion(entry.emotion)}</span>
+                                <button class="delete-entry" data-id="${entry.id}">🗑️</button>
+                            </div>
+                            <p>${entry.note}</p>
+                        `;
+                        container.appendChild(entryElement);
+                    });
+                } else {
+                    // Certificar-se de que a mensagem "Nenhuma entrada registrada" seja visível
+                    document.getElementById('no-entries').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Erro ao carregar entradas do diário:', error);
+                document.getElementById('no-entries').style.display = 'block';
             }
         }
+        
+        // Botão para atualizar a página inteira
+        document.getElementById('refresh-history').addEventListener('click', function() {
+            location.reload();
+        });
+        
+        // Usar event delegation para os botões de exclusão
+        document.getElementById('history-container').addEventListener('click', function(e) {
+            if (e.target && e.target.classList.contains('delete-entry')) {
+                const entryId = parseInt(e.target.getAttribute('data-id'));
+                deleteEntry(entryId);
+            }
+        });
 
         function getEmojiForEmotion(emotion) {
             const emojiMap = {
@@ -100,6 +126,24 @@
             };
             return emojiMap[emotion] || '🤔';
         }
+
+        // Função para apagar uma entrada individual
+        function deleteEntry(entryId) {
+            if (confirm('Tem certeza que deseja apagar esta entrada?')) {
+                let entries = JSON.parse(localStorage.getItem('emotionJournal')) || [];
+                entries = entries.filter(entry => entry.id !== entryId);
+                localStorage.setItem('emotionJournal', JSON.stringify(entries));
+                loadJournalEntries();
+            }
+        }
+
+        // Função para apagar todo o histórico
+        document.getElementById('clear-all').addEventListener('click', function() {
+            if (confirm('Tem certeza que deseja apagar TODO o histórico de emoções? Esta ação não pode ser desfeita.')) {
+                localStorage.removeItem('emotionJournal');
+                loadJournalEntries();
+            }
+        });
 
         // Salvar entrada no diário
         document.getElementById('save-entry').addEventListener('click', function() {
@@ -117,16 +161,19 @@
             }
             
             const emotion = selectedEmotion.getAttribute('data-emotion');
-            const date = new Date().toLocaleDateString('pt-BR', {
+            const date = new Date().toLocaleString('pt-BR', {
                 day: '2-digit',
                 month: 'long',
-                year: 'numeric'
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
             });
             
             const newEntry = {
                 emotion: emotion,
                 note: note,
-                date: date
+                date: date,
+                id: Date.now() // Adiciona um ID único baseado no timestamp
             };
             
             // Carregar entradas existentes
@@ -139,9 +186,6 @@
             entries = entries.slice(0, 20);
             localStorage.setItem('emotionJournal', JSON.stringify(entries));
             
-            // Atualizar a exibição
-            loadJournalEntries();
-            
             // Limpar formulário
             document.querySelectorAll('.emotion-option').forEach(option => {
                 option.classList.remove('selected');
@@ -149,6 +193,9 @@
             document.getElementById('emotion-notes').value = '';
             
             alert('Entrada salva com sucesso!');
+            
+            // Atualizar a exibição imediatamente sem recarregar a página
+            loadJournalEntries();
         });
 
         // Selecionar emoção
@@ -231,6 +278,34 @@
             margin-top: 30px;
         }
         
+        .history-controls {
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        
+        .action-button, .danger-button {
+            background-color: #4a6fa5;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .action-button:hover {
+            background-color: #3a5a80;
+        }
+        
+        .danger-button {
+            background-color: #dc3545;
+        }
+        
+        .danger-button:hover {
+            background-color: #c82333;
+        }
+        
         .journal-history-item {
             background: white;
             border: 1px solid #ddd;
@@ -253,6 +328,20 @@
         
         .history-header .emotion-emoji {
             font-size: 24px;
+            margin-right: 10px;
+        }
+        
+        .delete-entry {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 0;
+            margin-left: 10px;
+        }
+        
+        .delete-entry:hover {
+            transform: scale(1.2);
         }
     </style>
 </body>
