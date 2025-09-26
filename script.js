@@ -18,7 +18,7 @@ function getBotResponse(userMessage) {
         return "Olá! É um prazer te ver aqui. Como posso te ajudar hoje?";
     } else if (lowerCaseMessage.includes('bem') || lowerCaseMessage.includes('ótimo') || lowerCaseMessage.includes('feliz')) {
         return "Que bom que você está bem! É sempre bom compartilhar os bons momentos. Tem algo específico que gostaria de conversar?";
-    } else if (lowerCaseMessage.includes('mal') || lowerCaseMessage.includes('triste') || lowerCaseMessage.includes('ansioso') || lowerCaseMessage.includes('cansado')) {
+    } else if (lowerCaseMessage.includes('mal') || lowerCaseMessage.includes('triste') || lowerCaseMessage.includes('ansioso') || lowerCaseMessage.includes('ansiosa') || lowerCaseMessage.includes('nervoso') || lowerCaseMessage.includes('nervosa') || lowerCaseMessage.includes('confuso') || lowerCaseMessage.includes('confusa') || lowerCaseMessage.includes('frustado') || lowerCaseMessage.includes('frustada') || lowerCaseMessage.includes('cansado')) {
         return "Sinto muito que você esteja se sentindo assim. É importante reconhecer esses sentimentos. Você quer falar mais sobre o que está te deixando assim?";
     } else if (lowerCaseMessage.includes('obrigado') || lowerCaseMessage.includes('ajudou')) {
         return "Fico feliz em poder conversar com você. Lembre-se, este é um espaço seguro. Se precisar, estarei aqui.";
