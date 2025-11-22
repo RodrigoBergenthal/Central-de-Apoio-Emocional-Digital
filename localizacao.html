@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localização de Ajuda - Clínicas e Serviços de Psicologia em Porto Alegre</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav aria-label="Navegação principal">
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="informacoes.html">Informações</a></li>
+            <li><a href="ansiedade.html">Ansiedade</a></li>
+            <li><a href="diario.html">Diário de Emoções</a></li>
+            <li><a href="localizacao.html" aria-current="page">Localização de Ajuda</a></li>
+        </ul>
+        <div class="search-container">
+            <input type="search" id="searchInput" placeholder="Buscar informações...">
+            <button id="searchButton">🔍</button>
+        </div>
+    </nav>
+
+    <header>
+        <h1>📍 Clínicas e Serviços de Psicologia (Grátis ou Baixo Custo) – Porto Alegre (RS)</h1>
+        <p>Encontre apoio psicológico próximo a você</p>
+    </header>
+
+    <main>
+        <section class="filter-section">
+            <h2>Filtrar por tipo de serviço</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="caps">CAPS</button>
+                <button class="filter-btn" data-filter="university">Universitários</button>
+                <button class="filter-btn" data-filter="specialized">Especializados</button>
+            </div>
+        </section>
+
+        <div class="services-container">
+            <section class="service-item" data-type="university">
+                <h2>SAPP – PUCRS</h2>
+                <p><strong>Endereço:</strong> Av. Ipiranga, 6681 – Prédio 11, Sala 209, Porto Alegre</p>
+                <p><strong>Telefone:</strong> (51) 3320-3561</p>
+                <span class="service-tag">Universitário</span>
+            </section>
+
+            <section class="service-item" data-type="university">
+                <h2>SEP – Unisinos (Serviço Escola de Psicologia)</h2>
+                <p><strong>Endereço:</strong> Porto Alegre – unidade da Unisinos (Bairro Cristo Rei / São Leopoldo atende também)</p>
+                <p><strong>Telefone:</strong> (51) 3591-1122</p>
+                <span class="service-tag">Universitário</span>
+            </section>
+
+            <section class="service-item" data-type="caps">
+                <h2>CAPS II – Bem Viver</h2>
+                <p><strong>Endereço:</strong> Rua Marco Polo, 278 – Cristo Redentor, Porto Alegre</p>
+                <p><strong>Telefone:</strong> (51) 3289-5011</p>
+                <span class="service-tag">CAPS</span>
+            </section>
+
+            <section class="service-item" data-type="caps">
+                <h2>CAPS II – Cais Mental</h2>
+                <p><strong>Endereço:</strong> Av. José Bonifácio, 71 – Bom Fim, Porto Alegre</p>
+                <p><strong>Telefone:</strong> (51) 3289-2814</p>
+                <span class="service-tag">CAPS</span>
+            </section>
+
+            <section class="service-item" data-type="caps">
+                <h2>CAPS II – Hospital de Clínicas</h2>
+                <p><strong>Endereço:</strong> Rua São Manoel, 285 – Rio Branco, Porto Alegre</p>
+                <p><strong>Telefone:</strong> (51) 3359-8100</p>
+                <span class="service-tag">CAPS</span>
+            </section>
+
+            <section class="service-item" data-type="caps">
+                <h2>CAPSi – Casa Harmonia (crianças e adolescentes)</h2>
+                <p><strong>Endereço:</strong> Av. Loureiro da Silva, 1995 – Cidade Baixa, Porto Alegre</p>
+                <p><strong>Telefone:</strong> (51) 3289-2819</p>
+                <span class="service-tag">CAPS - Infantil/Juvenil</span>
+            </section>
+
+            <section class="service-item" data-type="caps">
+                <h2>CAPS AD II – Esperança</h2>
+                <p><strong>Endereço:</strong> Rua Raul Moreira, 253 – Cristal, Porto Alegre</p>
+                <p><strong>Telefone:</strong> (51) 3266-5944</p>
+                <span class="service-tag">CAPS - Adultos</span>
+            </section>
+
+            <section class="service-item" data-type="caps">
+                <h2>CAPS AD III – Passo a Passo</h2>
+                <p><strong>Endereço:</strong> Av. Carneiro da Fontoura, 57 – Jardim São Pedro, Porto Alegre</p>
+                <p><strong>Telefone:</strong> (51) 3342-0423</p>
+                <span class="service-tag">CAPS - Adultos</span>
+            </section>
+
+            <section class="service-item" data-type="caps">
+                <h2>CAPS AD III – SCS</h2>
+                <p><strong>Endereço:</strong> Av. Cavalhada, 1930 – Cavalhada, Porto Alegre</p>
+                <p><strong>Telefone:</strong> (51) 3263-6363</p>
+                <span class="service-tag">CAPS - Adultos</span>
+            </section>
+
+            <section class="service-item" data-type="caps">
+                <h2>CAPS AD IV – Céu Aberto</h2>
+                <p><strong>Endereço:</strong> Rua Comendador Azevedo, 97 – Floresta, Porto Alegre</p>
+                <p><strong>Telefone:</strong> (51) 3289-2833</p>
+                <span class="service-tag">CAPS - Adultos</span>
+            </section>
+
+            <section class="service-item" data-type="specialized">
+                <h2>CEPdePA – Centro de Estudos Psicanalíticos de Porto Alegre</h2>
+                <p><strong>Endereço:</strong> Porto Alegre (próximo ao Centro)</p>
+                <p><strong>Telefone:</strong> (51) 3222-3900</p>
+                <span class="service-tag">Especializado</span>
+            </section>
+        </div>
+
+        <section class="disclaimer">
+            <p><strong>Importante:</strong> Em casos de crise, procure ajuda especializada imediatamente. CVV: 188.</p>
+        </section>
+    </main>
+
+    <!-- Botão flutuante de emergência -->
+    <div class="emergency-float-btn">
+        <a href="#" onclick="window.location.href='index.html#emergency'; return false;" aria-label="Ajuda de Emergência">
+            <span>🆘</span>
+        </a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Centro Social Cesmar</p>
+    </footer>
+
+    <script>
+        // Função de busca
+        document.getElementById('searchButton').addEventListener('click', function() {
+            performSearch();
+        });
+
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            if (searchTerm) {
+                // Filtrar itens com base no termo de busca
+                const items = document.querySelectorAll('.service-item');
+                let found = false;
+
+                items.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        item.style.display = 'block';
+                        found = true;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                if (!found) {
+                    alert('Nenhum resultado encontrado para: ' + searchTerm);
+                }
+
+                document.getElementById('searchInput').value = '';
+            }
+        }
+
+        // Função de filtragem por tipo
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Atualizar botões ativos
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+
+                const filterType = this.getAttribute('data-filter');
+
+                document.querySelectorAll('.service-item').forEach(item => {
+                    if (filterType === 'all' || item.getAttribute('data-type') === filterType) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+    <style>
+        .filter-section {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background-color: #e9ecef;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            background-color: #dee2e6;
+        }
+
+        .filter-btn.active {
+            background-color: #4a6fa5;
+            color: white;
+        }
+
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .service-item {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .service-tag {
+            display: inline-block;
+            background-color: #4a6fa5;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .services-container {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações sobre Apoio Emocional</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav aria-label="Navegação principal">
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="informacoes.html" aria-current="page">Informações</a></li>
+            <li><a href="ansiedade.html">Ansiedade</a></li>
+            <li><a href="diario.html">Diário de Emoções</a></li>
+            <li><a href="localizacao.html">Localização de Ajuda</a></li>
+        </ul>
+        <div class="search-container">
+            <input type="search" id="searchInput" placeholder="Buscar informações...">
+            <button id="searchButton">🔍</button>
+        </div>
+    </nav>
+
+    <header>
+        <h1>💡 Informações sobre Apoio Emocional</h1>
+        <p>Entenda a importância e o funcionamento das centrais de apoio emocional</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>O que é uma central de apoio emocional?</h2>
+            <p>É um serviço que oferece escuta e acolhimento para pessoas que estão passando por sofrimento emocional, como tristeza, ansiedade, solidão ou crise.</p>
+        </section>
+
+        <section>
+            <h2>Qual é a importância?</h2>
+            <p>Uma central de apoio emocional é importante porque oferece acolhimento, escuta ativa e apoio psicológico a pessoas em sofrimento emocional, solidão, ansiedade ou em crise. Ela ajuda a prevenir transtornos mentais mais graves, como depressão e suicídio, ao proporcionar um espaço seguro e confidencial onde a pessoa pode falar sem julgamentos. Também orienta sobre a busca de ajuda profissional quando necessário.</p>
+        </section>
+
+        <section>
+            <h2>Quem pode procurar uma central de apoio emocional?</h2>
+            <p>Qualquer pessoa que esteja passando por um momento difícil e queira conversar. Não é necessário ter um diagnóstico ou estar em tratamento.</p>
+        </section>
+
+        <section>
+            <h2>O atendimento é gratuito?</h2>
+            <p>Sim, geralmente as centrais de apoio emocional oferecem atendimento gratuito, como o CVV (Centro de Valorização da Vida) no Brasil.</p>
+        </section>
+
+        <section>
+            <h2>O atendimento é sigiloso?</h2>
+            <p>Sim, todo o atendimento é feito com total sigilo e respeito à privacidade da pessoa.</p>
+        </section>
+
+        <section>
+            <h2>O que eu posso falar durante o atendimento?</h2>
+            <p>Você pode falar sobre qualquer coisa que esteja te incomodando -- escola, amizades, família, autoestima, sentimentos ou dúvidas. O importante é que você seja ouvido.</p>
+        </section>
+
+        <section>
+            <h2>E se eu estiver pensando em me machucar ou em suicídio?</h2>
+            <p>Você pode e deve procurar uma central de apoio emocional. Eles vão te ouvir com respeito e acolhimento, e podem te orientar a buscar ajuda profissional, se necessário.</p>
+        </section>
+
+        <section>
+            <h2>Técnicas de Autoajuda</h2>
+            <p>Além do apoio profissional, existem algumas práticas que você pode adotar no dia a dia para cuidar da sua saúde mental:</p>
+            <ul>
+                <li><strong>Respiração Consciente:</strong> Reserve alguns minutos por dia para respirar profundamente, focando apenas na entrada e saída do ar.</li>
+                <li><strong>Diário de Emoções:</strong> Escrever sobre o que está sentindo pode ajudar a entender e processar suas emoções.</li>
+                <li><strong>Atividade Física:</strong> Mesmo uma caminhada curta pode liberar endorfinas, substâncias que promovem o bem-estar.</li>
+                <li><strong>Contato com a Natureza:</strong> Passar tempo ao ar livre pode reduzir o estresse e melhorar o humor.</li>
+                <li><strong>Rotina de Sono:</strong> Um sono de qualidade é fundamental para a saúde mental.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Clínicas e Serviços de Psicologia</h2>
+            <p>Se você está buscando apoio psicológico profissional, confira nossas opções de clínicas e serviços de psicologia gratuitos ou de baixo custo em Porto Alegre:</p>
+            <ul>
+                <li><a href="localizacao.html" target="_blank">Clínicas e Serviços de Psicologia (Grátis ou Baixo Custo) – Porto Alegre (RS)</a></li>
+            </ul>
+        </section>
+
+        <section class="disclaimer">
+            <p><strong>Importante:</strong> Em casos de crise, procure ajuda especializada imediatamente. CVV: 188.</p>
+        </section>
+    </main>
+
+    <!-- Botão flutuante de emergência -->
+    <div class="emergency-float-btn">
+        <a href="#" onclick="window.location.href='index.html#emergency'; return false;" aria-label="Ajuda de Emergência">
+            <span>🆘</span>
+        </a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Centro Social Cesmar</p>
+    </footer>
+
+    <script>
+        // Função de busca
+        document.getElementById('searchButton').addEventListener('click', function() {
+            performSearch();
+        });
+
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            if (searchTerm) {
+                alert('Busca realizada: ' + searchTerm + '. Nesta versão, a busca é simulada. Em uma implementação completa, isso retornaria resultados relevantes.');
+                document.getElementById('searchInput').value = '';
+            }
+        }
+    </script>
+</body>
+</html>

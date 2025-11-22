@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central de Apoio Emocional Digital</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav aria-label="Navegação principal">
+        <ul>
+            <li><a href="index.html" aria-current="page">Início</a></li>
+            <li><a href="informacoes.html">Informações</a></li>
+            <li><a href="ansiedade.html">Ansiedade</a></li>
+            <li><a href="diario.html">Diário de Emoções</a></li>
+            <li><a href="localizacao.html">Localização de Ajuda</a></li>
+        </ul>
+        <div class="search-container">
+            <input type="search" id="searchInput" placeholder="Buscar informações...">
+            <button id="searchButton">🔍</button>
+        </div>
+    </nav>
+
+    <header>
+        <h1><span class="heart-icon">💖</span> Central de Apoio Emocional</h1>
+        <p>Você não está sozinho. Estamos aqui para ouvir e ajudar.</p>
+    </header>
+
+    <main>
+        <section class="emergency">
+            <h2>Em Caso de Emergência</h2>
+            <p>Se você está em crise ou sentindo pensamentos de autodestruição, procure ajuda imediatamente:</p>
+            <div class="emergency-resources">
+                <div class="emergency-contact">
+                    <h3>CVV - Centro de Valorização da Vida</h3>
+                    <p>Disque 188 ou acesse <a href="https://www.cvv.org.br" target="_blank">www.cvv.org.br</a></p>
+                    <p>Atendimento 24 horas, gratuito e confidencial</p>
+                </div>
+                <div class="emergency-contact">
+                    <h3>Saúde Mental Urgente</h3>
+                    <p>Dirija-se ao hospital psiquiátrico mais próximo ou ao pronto-socorro geral</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="intro">
+            <h2>Um Espaço Seguro para Você</h2>
+            <p>Sabemos que falar sobre sentimentos pode ser difícil. Nossa Central oferece diferentes formas de apoio, de forma anônima e respeitosa, para que você se sinta acolhido.</p>
+        </section>
+
+        <section class="highlight">
+            <h2>O que é uma Central de Apoio Emocional?</h2>
+            <p>Entenda a importância deste serviço de escuta e acolhimento para pessoas em sofrimento emocional.</p>
+            <a href="informacoes.html" target="_blank" class="highlight-link">Saiba mais sobre apoio emocional</a>
+        </section>
+
+        <section class="services">
+            <h2>Como podemos te ajudar?</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <span class="icon">🤖</span>
+                    <h3>Chat com Amigo Virtual</h3>
+                    <p>Converse com nosso assistente digital para desabafar e receber dicas.</p>
+                </div>
+                <div class="service-card">
+                    <span class="icon">👥</span>
+                    <h3>Fórum de Apoio</h3>
+                    <p>Participe de conversas com outras pessoas que estão passando por situações semelhantes.</p>
+                </div>
+                <div class="service-card">
+                    <span class="icon">📍</span>
+                    <h3>Localização de Ajuda</h3>
+                    <p>Encontre clínicas e serviços de psicologia gratuitos ou de baixo custo em Porto Alegre.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="simulator">
+            <h2>Experimente nosso Amigo Virtual</h2>
+            <p>Digite algo para começar uma conversa (isso é apenas uma simulação).</p>
+            <div id="chatbox">
+                <div class="message bot-message">Olá! Sou seu Amigo Virtual. Como você está se sentindo hoje?</div>
+                <!-- Mensagens serão adicionadas aqui pelo JavaScript -->
+            </div>
+            <div class="input-area">
+                <input type="text" id="userInput" placeholder="Digite sua mensagem...">
+                <button id="sendBtn">Enviar</button>
+            </div>
+        </section>
+
+        <section class="self-help">
+            <h2>Técnicas de Autoajuda</h2>
+            <p>Descubra práticas simples que podem ajudar no seu bem-estar emocional.</p>
+            <div class="self-help-grid">
+                <div class="self-help-card">
+                    <h3>Respiração Consciente</h3>
+                    <p>Respire profundamente por 4 segundos, segure por 4 e expire por 4. Repita 5 vezes para acalmar a mente.</p>
+                </div>
+                <div class="self-help-card">
+                    <h3>Diário de Emoções</h3>
+                    <p>Registre seus sentimentos diariamente para entender melhor seus padrões emocionais.</p>
+                </div>
+                <div class="self-help-card">
+                    <h3>Gratidão Diária</h3>
+                    <p>Anote 3 coisas pelas quais você é grato(a) todos os dias para cultivar positividade.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="resources">
+            <h2>Recursos e Informações</h2>
+            <p>Confira nossa base de conhecimento com artigos e vídeos sobre saúde mental.</p>
+            <ul>
+                <li><a href="informacoes.html" target="_blank">O que é uma central de apoio emocional?</a></li>
+                <li><a href="ansiedade.html" target="_blank">Saiba o que é e como lidar com a ansiedade</a></li>
+                <li><a href="diario.html" target="_blank">Diário de Emoções</a></li>
+                <li><a href="localizacao.html" target="_blank">Clínicas e Serviços de Psicologia (Grátis ou Baixo Custo) – Porto Alegre (RS)</a></li>
+                <li><a href="#">A importância do autoconhecimento</a></li>
+                <li><a href="#">Quando procurar ajuda profissional?</a></li>
+            </ul>
+        </section>
+
+        <section class="disclaimer">
+            <p><strong>Importante:</strong> Este é um espaço de apoio inicial. Em casos de crise, procure ajuda especializada imediatamente. CVV: 188.</p>
+        </section>
+    </main>
+
+    <!-- Botão flutuante de emergência -->
+    <div class="emergency-float-btn">
+        <a href="#emergency" aria-label="Ajuda de Emergência">
+            <span>🆘</span>
+        </a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Centro Social Cesmar | <a href="Apresentação slides.pdf" target="_blank">Apresentação de Slides</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Função de busca
+        document.getElementById('searchButton').addEventListener('click', function() {
+            performSearch();
+        });
+
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            if (searchTerm) {
+                alert('Busca realizada: ' + searchTerm + '. Nesta versão, a busca é simulada. Em uma implementação completa, isso retornaria resultados relevantes.');
+                document.getElementById('searchInput').value = '';
+            }
+        }
+
+        // Função para rolar para a seção de emergência
+        document.querySelector('.emergency-float-btn a').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('.emergency').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+    <style>
+        .emergency {
+            background-color: #fff3e0;
+            border-left: 5px solid #ff9800;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .emergency h2 {
+            color: #e65100;
+            margin-top: 0;
+        }
+
+        .emergency-resources {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .emergency-contact {
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .emergency-contact h3 {
+            color: #e65100;
+            margin-top: 0;
+        }
+
+        /* Estilo para o botão flutuante de emergência */
+        .emergency-float-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .emergency-float-btn a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: #e53935; /* Vermelho escuro */
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 24px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .emergency-float-btn a:hover {
+            background-color: #c62828; /* Tom mais escuro de vermelho */
+            transform: scale(1.1);
+        }
+
+        .emergency-float-btn a:focus {
+            outline: 3px solid #4a6fa5;
+            outline-offset: 2px;
+        }
+    </style>
+</body>
+</html>

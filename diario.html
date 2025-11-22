@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diário de Emoções</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav aria-label="Navegação principal">
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="informacoes.html">Informações</a></li>
+            <li><a href="ansiedade.html">Ansiedade</a></li>
+            <li><a href="diario.html" aria-current="page">Diário de Emoções</a></li>
+            <li><a href="localizacao.html">Localização de Ajuda</a></li>
+        </ul>
+        <div class="search-container">
+            <input type="search" id="searchInput" placeholder="Buscar informações...">
+            <button id="searchButton">🔍</button>
+        </div>
+    </nav>
+
+    <header>
+        <h1>📝 Diário de Emoções</h1>
+        <p>Registre como você está se sentindo hoje e acompanhe sua jornada emocional</p>
+    </header>
+
+    <main>
+        <section class="emotion-journal">
+            <h2>Como você está se sentindo hoje?</h2>
+            <div class="emotion-selector">
+                <div class="emotion-option" data-emotion="feliz">
+                    <span class="emoji">😊</span>
+                    <p>Feliz</p>
+                </div>
+                <div class="emotion-option" data-emotion="triste">
+                    <span class="emoji">😢</span>
+                    <p>Triste</p>
+                </div>
+                <div class="emotion-option" data-emotion="ansioso">
+                    <span class="emoji">😰</span>
+                    <p>Ansioso</p>
+                </div>
+                <div class="emotion-option" data-emotion="calmo">
+                    <span class="emoji">😌</span>
+                    <p>Calmo</p>
+                </div>
+                <div class="emotion-option" data-emotion="irritado">
+                    <span class="emoji">😠</span>
+                    <p>Irritado</p>
+                </div>
+                <div class="emotion-option" data-emotion="confuso">
+                    <span class="emoji">😕</span>
+                    <p>Confuso</p>
+                </div>
+            </div>
+
+            <div class="journal-entry">
+                <label for="emotion-notes">Como foi seu dia?</label>
+                <textarea id="emotion-notes" placeholder="Escreva sobre como você está se sentindo e o que aconteceu hoje..."></textarea>
+
+                <button id="save-entry" class="highlight-link">Salvar Diário</button>
+            </div>
+        </section>
+
+        <section class="privacy-note">
+            <p><strong>Nota de Privacidade:</strong> Os dados do seu diário são salvos apenas no seu navegador (localStorage) e não são armazenados em nenhum banco de dados ou servidor. Isso garante que sua privacidade seja mantida, mas também significa que os dados podem ser perdidos se você limpar o histórico do navegador ou usar outro dispositivo.</p>
+        </section>
+
+        <section class="emotion-history">
+            <h2>Seu Histórico de Emoções</h2>
+            <div class="history-controls">
+                <button id="refresh-history" class="action-button">🔄 Atualizar Histórico</button>
+                <button id="clear-all" class="danger-button">🗑️ Apagar Todo o Histórico</button>
+            </div>
+            <div id="history-container">
+                <p id="no-entries">Nenhuma entrada registrada ainda.</p>
+                <!-- Histórico será adicionado aqui dinamicamente -->
+            </div>
+        </section>
+
+        <section class="disclaimer">
+            <p><strong>Importante:</strong> Em casos de crise, procure ajuda especializada imediatamente. Se você sentir que precisa de apoio psicológico profissional, confira nossas opções de clínicas e serviços de psicologia gratuitos ou de baixo custo em Porto Alegre: <a href="localizacao.html" target="_blank">Localização de Ajuda</a>. CVV: 188.</p>
+        </section>
+    </main>
+
+    <!-- Botão flutuante de emergência -->
+    <div class="emergency-float-btn">
+        <a href="#" onclick="window.location.href='index.html#emergency'; return false;" aria-label="Ajuda de Emergência">
+            <span>🆘</span>
+        </a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Centro Social Cesmar</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Carregar entradas salvas do diário
+        function loadJournalEntries() {
+            try {
+                const entries = JSON.parse(localStorage.getItem('emotionJournal')) || [];
+                const container = document.getElementById('history-container');
+
+                if (entries.length > 0) {
+                    document.getElementById('no-entries').style.display = 'none';
+                    container.innerHTML = '';
+
+                    entries.forEach(entry => {
+                        const entryElement = document.createElement('div');
+                        entryElement.classList.add('journal-history-item');
+                        entryElement.innerHTML = `
+                            <div class="history-header">
+                                <h3>${entry.date}</h3>
+                                <span class="emotion-emoji">${getEmojiForEmotion(entry.emotion)}</span>
+                                <button class="delete-entry" data-id="${entry.id}">🗑️</button>
+                            </div>
+                            <p>${entry.note}</p>
+                        `;
+                        container.appendChild(entryElement);
+                    });
+                } else {
+                    // Certificar-se de que a mensagem "Nenhuma entrada registrada" seja visível
+                    document.getElementById('no-entries').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Erro ao carregar entradas do diário:', error);
+                document.getElementById('no-entries').style.display = 'block';
+            }
+        }
+
+        // Botão para atualizar a página inteira
+        document.getElementById('refresh-history').addEventListener('click', function() {
+            location.reload();
+        });
+
+        // Usar event delegation para os botões de exclusão
+        document.getElementById('history-container').addEventListener('click', function(e) {
+            if (e.target && e.target.classList.contains('delete-entry')) {
+                const entryId = parseInt(e.target.getAttribute('data-id'));
+                deleteEntry(entryId);
+            }
+        });
+
+        function getEmojiForEmotion(emotion) {
+            const emojiMap = {
+                'feliz': '😊',
+                'triste': '😢',
+                'ansioso': '😰',
+                'calmo': '😌',
+                'irritado': '😠',
+                'confuso': '😕'
+            };
+            return emojiMap[emotion] || '🤔';
+        }
+
+        // Função para apagar uma entrada individual
+        function deleteEntry(entryId) {
+            if (confirm('Tem certeza que deseja apagar esta entrada?')) {
+                let entries = JSON.parse(localStorage.getItem('emotionJournal')) || [];
+                entries = entries.filter(entry => entry.id !== entryId);
+                localStorage.setItem('emotionJournal', JSON.stringify(entries));
+                loadJournalEntries();
+            }
+        }
+
+        // Função para apagar todo o histórico
+        document.getElementById('clear-all').addEventListener('click', function() {
+            if (confirm('Tem certeza que deseja apagar TODO o histórico de emoções? Esta ação não pode ser desfeita.')) {
+                localStorage.removeItem('emotionJournal');
+                loadJournalEntries();
+            }
+        });
+
+        // Salvar entrada no diário
+        document.getElementById('save-entry').addEventListener('click', function() {
+            const selectedEmotion = document.querySelector('.emotion-option.selected');
+            const note = document.getElementById('emotion-notes').value;
+
+            if (!selectedEmotion) {
+                alert('Por favor, selecione uma emoção.');
+                return;
+            }
+
+            if (!note.trim()) {
+                alert('Por favor, escreva algo sobre seu dia.');
+                return;
+            }
+
+            const emotion = selectedEmotion.getAttribute('data-emotion');
+            const date = new Date().toLocaleString('pt-BR', {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            const newEntry = {
+                emotion: emotion,
+                note: note,
+                date: date,
+                id: Date.now() // Adiciona um ID único baseado no timestamp
+            };
+
+            // Carregar entradas existentes
+            let entries = JSON.parse(localStorage.getItem('emotionJournal')) || [];
+
+            // Adicionar nova entrada
+            entries.unshift(newEntry);
+
+            // Salvar no localStorage (limitar a 20 entradas)
+            entries = entries.slice(0, 20);
+            localStorage.setItem('emotionJournal', JSON.stringify(entries));
+
+            // Limpar formulário
+            document.querySelectorAll('.emotion-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            document.getElementById('emotion-notes').value = '';
+
+            alert('Entrada salva com sucesso!');
+
+            // Atualizar a exibição imediatamente sem recarregar a página
+            loadJournalEntries();
+        });
+
+        // Selecionar emoção
+        document.querySelectorAll('.emotion-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.emotion-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                this.classList.add('selected');
+            });
+        });
+
+        // Carregar entradas ao carregar a página
+        window.addEventListener('load', loadJournalEntries);
+    </script>
+
+    <script>
+        // Função de busca
+        document.getElementById('searchButton').addEventListener('click', function() {
+            performSearch();
+        });
+
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            if (searchTerm) {
+                alert('Busca realizada: ' + searchTerm + '. Nesta versão, a busca é simulada. Em uma implementação completa, isso retornaria resultados relevantes.');
+                document.getElementById('searchInput').value = '';
+            }
+        }
+    </script>
+
+    <style>
+        .emotion-journal {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .emotion-selector {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .emotion-option {
+            width: 80px;
+            text-align: center;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .emotion-option:hover {
+            border-color: #4a6fa5;
+            background-color: #e9ecef;
+        }
+
+        .emotion-option.selected {
+            border-color: #4a6fa5;
+            background-color: #d0e0f0;
+            transform: scale(1.05);
+        }
+
+        .emotion-option .emoji {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .journal-entry {
+            margin-top: 20px;
+        }
+
+        .journal-entry label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .journal-entry textarea {
+            width: 100%;
+            height: 120px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        .emotion-history {
+            margin-top: 30px;
+        }
+
+        .history-controls {
+            margin-bottom: 15px;
+            text-align: right;
+        }
+
+        .action-button, .danger-button {
+            background-color: #4a6fa5;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .action-button:hover {
+            background-color: #3a5a80;
+        }
+
+        .danger-button {
+            background-color: #dc3545;
+        }
+
+        .danger-button:hover {
+            background-color: #c82333;
+        }
+
+        .journal-history-item {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .history-header h3 {
+            margin: 0;
+            color: #4a6fa5;
+        }
+
+        .history-header .emotion-emoji {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        .delete-entry {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 0;
+            margin-left: 10px;
+        }
+
+        .delete-entry:hover {
+            transform: scale(1.2);
+        }
+
+        .privacy-note {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+
+        .privacy-note strong {
+            color: #856404;
+        }
+    </style>
+</body>
+</html>
